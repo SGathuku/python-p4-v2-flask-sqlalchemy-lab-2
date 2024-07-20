@@ -17,8 +17,10 @@ class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     
+    # Relationship with Review
     reviews = db.relationship('Review', back_populates='customer')
     
+    # Many-to-many relationship with Item through Review
     items = association_proxy('reviews', 'item')
 
     def __repr__(self):
@@ -32,8 +34,10 @@ class Item(db.Model):
     name = db.Column(db.String)
     price = db.Column(db.Float)
     
+    # Relationship with Review
     reviews = db.relationship('Review', back_populates='item')
     
+    # Many-to-many relationship with Customer through Review
     customers = association_proxy('reviews', 'customer')
 
     def __repr__(self):
