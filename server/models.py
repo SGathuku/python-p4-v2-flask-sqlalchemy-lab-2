@@ -20,7 +20,7 @@ class Customer(db.Model):
     # Relationship with Review
     reviews = db.relationship('Review', back_populates='customer')
     
-    # Many-to-many relationship with Item through Review
+    # Association proxy for items through reviews
     items = association_proxy('reviews', 'item')
 
     def __repr__(self):
@@ -37,7 +37,7 @@ class Item(db.Model):
     # Relationship with Review
     reviews = db.relationship('Review', back_populates='item')
     
-    # Many-to-many relationship with Customer through Review
+    # Association proxy for customers through reviews
     customers = association_proxy('reviews', 'customer')
 
     def __repr__(self):
